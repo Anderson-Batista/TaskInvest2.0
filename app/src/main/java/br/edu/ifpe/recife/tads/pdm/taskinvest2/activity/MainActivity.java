@@ -1,8 +1,10 @@
-package br.edu.ifpe.recife.tads.pdm.taskinvest2;
+package br.edu.ifpe.recife.tads.pdm.taskinvest2.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import br.edu.ifpe.recife.tads.pdm.taskinvest2.R;
 
 public class MainActivity extends AppCompatActivity {
 
