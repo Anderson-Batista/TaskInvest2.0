@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import br.edu.ifpe.recife.tads.pdm.taskinvest2.R;
+
 public class HomeActivity extends AppCompatActivity {
 
     @Override
