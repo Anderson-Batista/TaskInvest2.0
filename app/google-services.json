@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "763564687275",
+    "project_id": "taskinvest-5e748",
+    "storage_bucket": "taskinvest-5e748.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:763564687275:android:a63f512ad4c3d4126d5cee",
+        "android_client_info": {
+          "package_name": "br.edu.ifpe.recife.tads.pdm.taskinvest2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "763564687275-bn2hep2fltjou9ouv63a8jciu54cdbsd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcWrk0DJ1kAMcVYNyIJBq3KwSpbLfLQfg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "763564687275-bn2hep2fltjou9ouv63a8jciu54cdbsd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
