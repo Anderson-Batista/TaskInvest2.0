@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/new_background"
+    android:background="@color/white"
     android:gravity="center_horizontal|center_vertical"
     android:orientation="vertical"
     android:paddingLeft="32dp"
@@ -15,59 +15,61 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/cherry_cream_soda"
-        android:text="TaskInvest"
-        android:textColor="#121111"
-        android:textSize="40sp" />
+        android:fontFamily="@font/lora_semi_bold"
+        android:text="@string/app_name"
+        android:textColor="@color/azul"
+        android:textSize="40sp"/>
 
     <EditText
         android:id="@+id/editTextEmailLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/background_texto"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/background_input"
+        android:elevation="4dp"
         android:drawableLeft="@drawable/baseline_email_24"
         android:drawablePadding="6dp"
         android:ems="10"
-        android:hint="Email"
+        android:hint="@string/input_email"
         android:inputType="textWebEmailAddress|textPersonName"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:padding="12dp"
+        android:textColor="@color/cinza_claro"
+        android:textColorHint="@color/cinza_claro"/>
 
     <EditText
         android:id="@+id/editTextSenhaLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/background_texto"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/background_input"
+        android:elevation="4dp"
         android:drawableLeft="@drawable/baseline_lock_24"
         android:drawablePadding="6dp"
         android:ems="10"
-        android:hint="Senha"
+        android:hint="@string/input_password"
         android:inputType="textPersonName|textPassword"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:padding="12dp"
+        android:textColor="@color/cinza_claro"
+        android:textColorHint="@color/cinza_claro"/>
 
     <Button
         android:id="@+id/buttonAcessar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="12dp"
         android:background="@drawable/background_botao"
+        android:elevation="8dp"
         android:text="Acessar"
         android:textColor="@color/white"/>
 
-
-    <Button
-        android:id="@+id/buttonCadastro"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/cadastroMensagem"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/backgroud_button_cadastre_se"
-        android:onClick="cadastrar"
-        android:text="Cadastre-se"
-        android:textColor="@color/white" />
+        android:layout_marginTop="24dp"
+        android:text="@string/register_message"
+        android:textColor="@color/azul"
+        android:textSize="14sp"/>
 
 </LinearLayout>
