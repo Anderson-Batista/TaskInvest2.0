@@ -5,4 +5,6 @@
     <string name="input_name">Nome</string>
     <string name="register_message">Não tem uma conta? Cadastre-se.</string>
     <string name="login_message">Já tem uma conta? Acessar.</string>
+    <string name="login_button_label">Acessar</string>
+    <string name="register_button_label">Cadastrar</string>
 </resources>
