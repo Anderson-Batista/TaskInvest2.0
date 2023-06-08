@@ -7,4 +7,5 @@
     <string name="login_message">Já tem uma conta? Acessar.</string>
     <string name="login_button_label">Acessar</string>
     <string name="register_button_label">Cadastrar</string>
+    <string name="taskinvest_icon_description">Imagem de uma prancheta com um símbolo de dinheiro</string>
 </resources>
