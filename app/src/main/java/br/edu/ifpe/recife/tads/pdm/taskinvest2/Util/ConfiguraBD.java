@@ -8,7 +8,7 @@ public class ConfiguraBD {
 
     //verifica se existe instacia do firabese não é nula
     public static FirebaseAuth firebaseAutenticacao() {
-        if(auth == null){
+        if (auth == null) {
             auth = FirebaseAuth.getInstance();
         }
         return auth;

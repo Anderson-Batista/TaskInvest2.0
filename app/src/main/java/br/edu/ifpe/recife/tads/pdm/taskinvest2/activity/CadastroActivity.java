@@ -66,9 +66,9 @@ public class CadastroActivity extends AppCompatActivity {
         String email = campoEmail.getText().toString();
         String senha = campoSenha.getText().toString();
 
-        if(!nome.isEmpty()){
-            if(!email.isEmpty()){
-                if(!senha.isEmpty()){
+        if (!nome.isEmpty()) {
+            if (!email.isEmpty()) {
+                if (!senha.isEmpty()) {
 
                     usuario = new Usuario();
 
@@ -79,15 +79,15 @@ public class CadastroActivity extends AppCompatActivity {
                     //cadastro
                     cadastrarUsuario();
 
-                }else {
+                } else {
                     Toast.makeText(this, "Preencha a senha", Toast.LENGTH_SHORT).show();
                 }
 
-            }else {
+            } else {
                 Toast.makeText(this, "Preencha o email", Toast.LENGTH_SHORT).show();
             }
 
-        }else {
+        } else {
             Toast.makeText(this, "Preencha o nome", Toast.LENGTH_SHORT).show();
         }
 
@@ -100,23 +100,23 @@ public class CadastroActivity extends AppCompatActivity {
         autenticacao.createUserWithEmailAndPassword(
                 usuario.getEmail(),
                 usuario.getSenha()
-        ).addOnCompleteListener(this,new OnCompleteListener<AuthResult>() {
+        ).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NotNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Toast.makeText(CadastroActivity.this, "Sucesso ao cadastrar o usuário.", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     String excecao = "";
 
                     try {
                         throw task.getException();
-                    }catch (FirebaseAuthWeakPasswordException e){
+                    } catch (FirebaseAuthWeakPasswordException e) {
                         excecao = "Digete uma senha mais forte.";
-                    }catch (FirebaseAuthInvalidCredentialsException e){
+                    } catch (FirebaseAuthInvalidCredentialsException e) {
                         excecao = "Digete um Email válido.";
-                    }catch (FirebaseAuthUserCollisionException e){
+                    } catch (FirebaseAuthUserCollisionException e) {
                         excecao = "Esta conta já existe.";
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         excecao = "Erro ao cadastrar usuário." + e.getMessage();
                         e.printStackTrace();
                     }

@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser usuarioAuth = auth.getCurrentUser();
 
-        if(usuarioAuth != null) {
+        if (usuarioAuth != null) {
             abrirHome();
         }
     }
