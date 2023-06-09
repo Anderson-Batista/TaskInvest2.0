@@ -91,7 +91,6 @@
             android:background="@drawable/background_botao"
             android:elevation="8dp"
             android:onClick="validarAutenticacao"
-            android:padding="8dp"
             android:text="@string/login_button_label"
             android:textColor="@color/white"
             android:textStyle="bold"
