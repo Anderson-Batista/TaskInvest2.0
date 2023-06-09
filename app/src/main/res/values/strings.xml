@@ -2,10 +2,13 @@
     <string name="app_name">TaskInvest</string>
     <string name="input_email">Email</string>
     <string name="input_password">Senha</string>
-    <string name="input_name">Nome</string>
+    <string name="input_name">Nome Sobrenome</string>
     <string name="register_message">Não tem uma conta? Cadastre-se.</string>
     <string name="login_message">Já tem uma conta? Acessar.</string>
     <string name="login_button_label">Acessar</string>
     <string name="register_button_label">Cadastrar</string>
     <string name="taskinvest_icon_description">Imagem de uma prancheta com um símbolo de dinheiro</string>
+    <string name="nome_label">Nome</string>
+    <string name="confirmar_senha_label">Confirmar Senha</string>
+    <string name="arrow_description">Uma seta para à esquerda que permite voltar para a tela anterior</string>
 </resources>

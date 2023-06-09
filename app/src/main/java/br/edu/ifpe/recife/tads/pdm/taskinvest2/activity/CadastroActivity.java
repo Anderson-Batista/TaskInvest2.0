@@ -1,5 +1,6 @@
 package br.edu.ifpe.recife.tads.pdm.taskinvest2.activity;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -32,6 +33,7 @@ public class CadastroActivity extends AppCompatActivity {
     EditText campoNome;
     EditText campoEmail;
     EditText campoSenha;
+    EditText campoConfirmarSenha;
 
     Button botaoCadastrar;
 
@@ -40,13 +42,15 @@ public class CadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
-        TextView tv = findViewById(R.id.loginMensagem);
-        tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                logar(view);
-            }
-        });
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
+
+        findViewById(R.id.loginMensagem).setOnClickListener(
+                view -> startActivity(new Intent(this, LoginActivity.class)));
+        findViewById(R.id.arrowBack).setOnClickListener(
+                view -> startActivity(new Intent(this, LoginActivity.class)));
 
         inicializar();
     }
@@ -57,6 +61,7 @@ public class CadastroActivity extends AppCompatActivity {
         campoNome = findViewById(R.id.editTextNome);
         campoEmail = findViewById(R.id.editTextEmail);
         campoSenha = findViewById(R.id.editTextSenha);
+        campoConfirmarSenha = findViewById(R.id.editTextConfirmarSenha);
         botaoCadastrar = findViewById(R.id.buttonCadastrar);
 
     }
@@ -65,33 +70,36 @@ public class CadastroActivity extends AppCompatActivity {
         String nome = campoNome.getText().toString();
         String email = campoEmail.getText().toString();
         String senha = campoSenha.getText().toString();
+        String senhaConfirmacao = campoConfirmarSenha.getText().toString();
 
-        if (!nome.isEmpty()) {
-            if (!email.isEmpty()) {
-                if (!senha.isEmpty()) {
-
-                    usuario = new Usuario();
-
-                    usuario.setNome(nome);
-                    usuario.setEmail(email);
-                    usuario.setSenha(senha);
-
-                    //cadastro
-                    cadastrarUsuario();
-
-                } else {
-                    Toast.makeText(this, "Preencha a senha", Toast.LENGTH_SHORT).show();
-                }
-
-            } else {
-                Toast.makeText(this, "Preencha o email", Toast.LENGTH_SHORT).show();
-            }
-
-        } else {
+        if (nome.isEmpty()) {
             Toast.makeText(this, "Preencha o nome", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (email.isEmpty()) {
+            Toast.makeText(this, "Preencha o email", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (senha.isEmpty()) {
+            Toast.makeText(this, "Preencha a senha", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (senhaConfirmacao.isEmpty()) {
+            Toast.makeText(this, "Confirme a senha", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!senhaConfirmacao.equals(senha)) {
+            Toast.makeText(this, "As senhas informadas não correspondem", Toast.LENGTH_SHORT).show();
+            return;
         }
 
+        usuario = new Usuario();
+        usuario.setNome(nome);
+        usuario.setEmail(email);
+        usuario.setSenha(senha);
 
+        // cadastro
+        cadastrarUsuario();
     }
 
     private void cadastrarUsuario() {
@@ -125,10 +133,5 @@ public class CadastroActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    public void logar(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
     }
 }
