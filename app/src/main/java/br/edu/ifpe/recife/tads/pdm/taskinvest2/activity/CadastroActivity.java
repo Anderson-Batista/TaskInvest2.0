@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,10 +48,11 @@ public class CadastroActivity extends AppCompatActivity {
             actionBar.hide();
         }
 
-        findViewById(R.id.loginMensagem).setOnClickListener(
-                view -> startActivity(new Intent(this, LoginActivity.class)));
-        findViewById(R.id.arrowBack).setOnClickListener(
-                view -> startActivity(new Intent(this, LoginActivity.class)));
+        TextView loginMensagem =  findViewById(R.id.loginMensagem);
+        loginMensagem.setOnClickListener(view -> startActivity(new Intent(this, LoginActivity.class)));
+
+        ImageView arrowBack = findViewById(R.id.arrowBack);
+        arrowBack.setOnClickListener(view -> startActivity(new Intent(this, LoginActivity.class)));
 
         inicializar();
     }

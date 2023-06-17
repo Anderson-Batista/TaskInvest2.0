@@ -42,13 +42,8 @@ public class LoginActivity extends AppCompatActivity {
             actionBar.hide();
         }
 
-        TextView tv = findViewById(R.id.cadastroMensagem);
-        tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cadastrar(view);
-            }
-        });
+        TextView cadastroMensagem = findViewById(R.id.cadastroMensagem);
+        cadastroMensagem.setOnClickListener(view -> cadastrar(view));
 
         auth = ConfiguraBD.firebaseAutenticacao();
         inicializarComponentes();
