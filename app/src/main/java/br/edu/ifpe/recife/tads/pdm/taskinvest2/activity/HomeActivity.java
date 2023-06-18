@@ -1,13 +1,17 @@
 package br.edu.ifpe.recife.tads.pdm.taskinvest2.activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,16 +23,19 @@ import br.edu.ifpe.recife.tads.pdm.taskinvest2.fragment.MinhasTarefasFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private FirebaseAuth auth;
     private BottomNavigationView bottomNavigationView;
     private MinhasTarefasFragment minhasTarefasFragment;
     private MercadoCotacoesFragment mercadoCotacoesFragment;
+    private FirebaseAuth auth;
+    private AlertDialog sairDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        auth = ConfiguraBD.firebaseAutenticacao();
+        sairDialog = makeSairDialog();
         minhasTarefasFragment = new MinhasTarefasFragment();
         mercadoCotacoesFragment = new MercadoCotacoesFragment();
 
@@ -57,8 +64,6 @@ public class HomeActivity extends AppCompatActivity {
                     return false;
             }
         });
-
-        auth = ConfiguraBD.firebaseAutenticacao();
     }
 
     @Override
@@ -70,17 +75,34 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.opcao_sair:
-                try {
-                    auth.signOut();
-                    finish();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                sairDialog.show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private AlertDialog makeSairDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog sairDialog = builder
+                .setIcon(R.drawable.baseline_logout_24)
+                .setTitle(R.string.logout_dialog_title)
+                .setMessage(R.string.logout_dialog_message)
+                .setCancelable(false)
+                .setPositiveButton(R.string.logout_dialog_positive_button, (dialogInterface, i) -> {
+                    try {
+                        auth.signOut();
+                        finish();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                })
+                .setNegativeButton(R.string.logout_dialog_negative_button,
+                        (dialogInterface, i) -> dialogInterface.cancel())
+                .create();
+        return sairDialog;
     }
 }

@@ -14,6 +14,8 @@
     <string name="logout_option">Sair</string>
     <string name="my_tasks">Minhas Tarefas</string>
     <string name="market_quotes">Mercado/Cotações</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logout_dialog_title">Sair</string>
+    <string name="logout_dialog_message">Você realmente deseja sair?</string>
+    <string name="logout_dialog_positive_button">Sim</string>
+    <string name="logout_dialog_negative_button">Não</string>
 </resources>
