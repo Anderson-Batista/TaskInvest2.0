@@ -48,7 +48,7 @@ public class CadastroActivity extends AppCompatActivity {
             actionBar.hide();
         }
 
-        TextView loginMensagem =  findViewById(R.id.loginMensagem);
+        TextView loginMensagem = findViewById(R.id.loginMensagem);
         loginMensagem.setOnClickListener(view -> startActivity(new Intent(this, LoginActivity.class)));
 
         ImageView arrowBack = findViewById(R.id.arrowBack);

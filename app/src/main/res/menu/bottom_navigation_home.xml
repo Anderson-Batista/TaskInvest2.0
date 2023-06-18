@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/minhas_tarefas"
+        android:icon="@drawable/taskinvest_icon"
+        android:title="@string/my_tasks" />
+
+    <item
+        android:id="@+id/mercado_cotacoes"
+        android:icon="@drawable/chart_line"
+        android:title="@string/market_quotes" />
+</menu>

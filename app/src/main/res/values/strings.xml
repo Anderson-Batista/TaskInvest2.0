@@ -11,4 +11,9 @@
     <string name="nome_label">Nome</string>
     <string name="confirmar_senha_label">Confirmar Senha</string>
     <string name="arrow_description">Uma seta para à esquerda que permite voltar para a tela anterior</string>
+    <string name="logout_option">Sair</string>
+    <string name="my_tasks">Minhas Tarefas</string>
+    <string name="market_quotes">Mercado/Cotações</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
