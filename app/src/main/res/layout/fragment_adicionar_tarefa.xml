@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="32dp"
+    tools:context=".fragment.AdicionarTarefaFragment">
+
+    <ImageView
+        android:id="@+id/add_task_close_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="96dp"
+        android:contentDescription="@string/add_task_close_button_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_close_24" />
+
+    <TextView
+        android:id="@+id/task_title_lable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_title_label"
+        android:textColor="@color/cinza_escuro"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/task_title_input"
+        app:layout_constraintStart_toStartOf="@+id/task_title_input"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <EditText
+        android:id="@+id/task_title_input"
+        android:layout_width="344dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="20dp"
+        android:autofillHints="name"
+        android:background="@drawable/background_input"
+        android:elevation="4dp"
+        android:hint="@string/task_title_label"
+        android:inputType="text"
+        android:padding="12dp"
+        android:textColor="@color/cinza_claro"
+        android:textColorHint="@color/cinza_claro"
+        app:layout_constraintBottom_toTopOf="@+id/task_description_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_title_lable" />
+
+    <TextView
+        android:id="@+id/task_description_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_description_label"
+        android:textColor="@color/cinza_escuro"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/task_description_input"
+        app:layout_constraintStart_toStartOf="@+id/task_description_input"
+        app:layout_constraintTop_toBottomOf="@+id/task_title_input" />
+
+    <EditText
+        android:id="@+id/task_description_input"
+        android:layout_width="344dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="32dp"
+        android:autofillHints="name"
+        android:background="@drawable/background_input"
+        android:elevation="4dp"
+        android:hint="@string/task_description_label"
+        android:inputType="text"
+        android:padding="12dp"
+        android:textColor="@color/cinza_claro"
+        android:textColorHint="@color/cinza_claro"
+        app:layout_constraintBottom_toTopOf="@+id/date_picker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_description_label" />
+
+    <LinearLayout
+        android:id="@+id/date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/add_task_button"
+        app:layout_constraintStart_toStartOf="@+id/task_description_input"
+        app:layout_constraintTop_toBottomOf="@+id/task_description_input">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/date_picker_description"
+            app:srcCompat="@drawable/calendar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/date_picker_label"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_task_button"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/background_botao"
+        android:elevation="8dp"
+        android:text="@string/add_task_button"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_picker" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
