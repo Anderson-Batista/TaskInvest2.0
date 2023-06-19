@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Minhas Tarefas"
+        android:text="@string/my_tasks"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +34,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:backgroundTint="@color/azul"
+        android:contentDescription="@string/add_button_description"
         android:src="@drawable/baseline_add_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
