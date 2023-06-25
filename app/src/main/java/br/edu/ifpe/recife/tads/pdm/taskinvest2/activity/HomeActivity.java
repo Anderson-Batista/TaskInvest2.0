@@ -2,6 +2,7 @@ package br.edu.ifpe.recife.tads.pdm.taskinvest2.activity;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import br.edu.ifpe.recife.tads.pdm.taskinvest2.R;
 import br.edu.ifpe.recife.tads.pdm.taskinvest2.Util.ConfiguraBD;
+import br.edu.ifpe.recife.tads.pdm.taskinvest2.Util.FirebaseAuthListener;
 import br.edu.ifpe.recife.tads.pdm.taskinvest2.fragment.MercadoCotacoesFragment;
 import br.edu.ifpe.recife.tads.pdm.taskinvest2.fragment.MinhasTarefasFragment;
 
@@ -23,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
     private MinhasTarefasFragment minhasTarefasFragment;
     private MercadoCotacoesFragment mercadoCotacoesFragment;
     private FirebaseAuth auth;
+    private FirebaseAuthListener authListener;
     private AlertDialog sairDialog;
 
     @Override
@@ -31,6 +34,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         auth = ConfiguraBD.firebaseAutenticacao();
+        authListener = new FirebaseAuthListener(this);
         sairDialog = makeSairDialog();
         minhasTarefasFragment = new MinhasTarefasFragment();
         mercadoCotacoesFragment = new MercadoCotacoesFragment();
@@ -63,6 +67,18 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(authListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        auth.removeAuthStateListener(authListener);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_home, menu);
@@ -71,7 +87,6 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.opcao_sair:
                 sairDialog.show();
@@ -83,6 +98,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private AlertDialog makeSairDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
         AlertDialog sairDialog = builder
                 .setIcon(R.drawable.baseline_logout_24)
                 .setTitle(R.string.logout_dialog_title)
@@ -91,7 +107,6 @@ public class HomeActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.logout_dialog_positive_button, (dialogInterface, i) -> {
                     try {
                         auth.signOut();
-                        finish();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -99,6 +114,7 @@ public class HomeActivity extends AppCompatActivity {
                 .setNegativeButton(R.string.logout_dialog_negative_button,
                         (dialogInterface, i) -> dialogInterface.cancel())
                 .create();
+
         return sairDialog;
     }
 }

@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import br.edu.ifpe.recife.tads.pdm.taskinvest2.R;
 import br.edu.ifpe.recife.tads.pdm.taskinvest2.Util.ConfiguraBD;
+import br.edu.ifpe.recife.tads.pdm.taskinvest2.Util.FirebaseAuthListener;
 import br.edu.ifpe.recife.tads.pdm.taskinvest2.model.Usuario;
 
 public class LoginActivity extends AppCompatActivity {
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     Button botaoAcessar;
 
     private FirebaseAuth auth;
+    private FirebaseAuthListener authListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +45,14 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         TextView cadastroMensagem = findViewById(R.id.cadastroMensagem);
-        cadastroMensagem.setOnClickListener(view -> cadastrar(view));
+        cadastroMensagem.setOnClickListener(view -> {
+            Intent intent = new Intent(this, CadastroActivity.class);
+            startActivity(intent);
+        });
 
         auth = ConfiguraBD.firebaseAutenticacao();
+        authListener = new FirebaseAuthListener(this);
+
         inicializarComponentes();
     }
 
@@ -80,9 +87,7 @@ public class LoginActivity extends AppCompatActivity {
         ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    abrirHome();
-                } else {
+                if (!task.isSuccessful()) {
                     String excecao = "";
                     try {
                         throw task.getException();
@@ -100,24 +105,16 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void abrirHome() {
-        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-        startActivity(intent);
-    }
-
-    public void cadastrar(View view) {
-        Intent intent = new Intent(this, CadastroActivity.class);
-        startActivity(intent);
-    }
-
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser usuarioAuth = auth.getCurrentUser();
+        auth.addAuthStateListener(authListener);
+    }
 
-        if (usuarioAuth != null) {
-            abrirHome();
-        }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        auth.removeAuthStateListener(authListener);
     }
 
     private void inicializarComponentes() {

@@ -24,13 +24,14 @@ import org.jetbrains.annotations.NotNull;
 
 import br.edu.ifpe.recife.tads.pdm.taskinvest2.R;
 import br.edu.ifpe.recife.tads.pdm.taskinvest2.Util.ConfiguraBD;
+import br.edu.ifpe.recife.tads.pdm.taskinvest2.Util.FirebaseAuthListener;
 import br.edu.ifpe.recife.tads.pdm.taskinvest2.model.Usuario;
 
 public class CadastroActivity extends AppCompatActivity {
 
     Usuario usuario;
-    FirebaseAuth autenticacao;
-
+    FirebaseAuth auth;
+    FirebaseAuthListener authListener;
     EditText campoNome;
     EditText campoEmail;
     EditText campoSenha;
@@ -42,6 +43,9 @@ public class CadastroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
+
+        auth = FirebaseAuth.getInstance();
+        authListener = new FirebaseAuthListener(this);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -57,6 +61,17 @@ public class CadastroActivity extends AppCompatActivity {
         inicializar();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(authListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        auth.removeAuthStateListener(authListener);
+    }
 
     private void inicializar() {
 
@@ -105,17 +120,13 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     private void cadastrarUsuario() {
-        autenticacao = ConfiguraBD.firebaseAutenticacao();
-
-        autenticacao.createUserWithEmailAndPassword(
+        auth.createUserWithEmailAndPassword(
                 usuario.getEmail(),
                 usuario.getSenha()
         ).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NotNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(CadastroActivity.this, "Sucesso ao cadastrar o usuário.", Toast.LENGTH_SHORT).show();
-                } else {
+                if (!task.isSuccessful()) {
                     String excecao = "";
 
                     try {
@@ -131,7 +142,6 @@ public class CadastroActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     Toast.makeText(CadastroActivity.this, excecao, Toast.LENGTH_SHORT).show();
-
                 }
             }
         });
